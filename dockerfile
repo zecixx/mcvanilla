@@ -8,11 +8,10 @@ RUN apk update && \
 RUN mkdir /minecraft
 ADD server.jar /minecraft
 WORKDIR /out
-RUN java -jar /minecraft/server.jar && \
-sed -i 's/false/TRUE/ig' /out/eula.txt
-
+RUN java -jar /minecraft/server.jar 
+RUN chown mcuser:mcuser /out
+RUN sed -i 's/false/TRUE/ig' /out/eula.txt
 ENTRYPOINT ["tini","--"]
-RUN chown mcuser:mcuser /out/*
 USER mcuser
 CMD ["java","-jar","/minecraft/server.jar"]
 EXPOSE 25565

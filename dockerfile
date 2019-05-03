@@ -1,7 +1,7 @@
 FROM alpine
 MAINTAINER tecrist <kyle@tecrist.com>
-RUN groupadd -g 1000 appuser && \
-    useradd -r -u 1000 -g mcuser mcuser
+RUN addgroup -g 1000 appuser && \
+    adduser -r -u 1000 -g mcuser mcuser
 USER mcuser
 VOLUME /out
 RUN apk update && \

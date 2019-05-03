@@ -8,11 +8,9 @@ RUN apk update && \
 RUN mkdir /minecraft
 ADD server.jar /minecraft
 WORKDIR /out
-RUN java -jar /minecraft/server.jar 
-RUN ls /minecraft
-RUN ls /out
-RUN sed -i 's/false/TRUE/ig' /out/eula.txt
-RUN -R chown mcuser:mcuser /out
+ONBUILD RUN java -jar /minecraft/server.jar && \ 
+	sed -i 's/false/TRUE/ig' /out/eula.txt && \
+	chown -R mcuser:mcuser /out
 USER mcuser
 ENTRYPOINT ["tini","--"]
 CMD ["java","-jar","/minecraft/server.jar"]

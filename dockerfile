@@ -9,7 +9,8 @@ RUN mkdir /minecraft
 ADD server.jar /minecraft
 WORKDIR /out
 RUN java -jar /minecraft/server.jar 
-RUN ls
+RUN ls /minecraft
+RUN ls /out
 RUN sed -i 's/false/TRUE/ig' /out/eula.txt
 RUN -R chown mcuser:mcuser /out
 USER mcuser

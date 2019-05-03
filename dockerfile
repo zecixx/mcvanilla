@@ -5,7 +5,6 @@ RUN addgroup -g 1000 mcuser && \
 VOLUME /out
 RUN apk update && \
         apk add openjdk8 tini
-USER mcuser
 RUN mkdir /minecraft
 ADD server.jar /minecraft
 WORKDIR /out
@@ -13,6 +12,8 @@ RUN java -jar /minecraft/server.jar && \
 sed -i 's/false/TRUE/ig' /out/eula.txt
 
 ENTRYPOINT ["tini","--"]
+RUN chown mcuser:mcuser /out/*
+USER mcuser
 CMD ["java","-jar","/minecraft/server.jar"]
 EXPOSE 25565
 

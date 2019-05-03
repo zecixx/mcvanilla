@@ -9,8 +9,7 @@ RUN mkdir /minecraft
 ADD server.jar /minecraft
 WORKDIR /out
 RUN java -jar /minecraft/server.jar 
-RUN sed -i 's/false/TRUE/ig' /minecraft/eula.txt
-RUN cp /minecraft/eula.txt /out/eula.txt
+RUN sed -i 's/false/TRUE/ig' /out/eula.txt
 RUN -R chown mcuser:mcuser /out
 USER mcuser
 ENTRYPOINT ["tini","--"]

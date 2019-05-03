@@ -1,6 +1,6 @@
 FROM alpine
 MAINTAINER tecrist <kyle@tecrist.com>
-RUN addgroup -g 1000 appuser && \
+RUN addgroup -g 1000 mcuser && \
     adduser -u 1000 -G mcuser mcuser
 USER mcuser
 VOLUME /out

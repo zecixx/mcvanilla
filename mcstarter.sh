@@ -1,7 +1,8 @@
 #/bin/sh
-jcommand = "java -jar /minecraft/server.jar"
+JCOMMAND="java -jar /minecraft/server.jar"
 if [ -f "/out/eula.txt"]; then
-   $jcommand
+   $JCOMMAND
 else
-   $jcommand && sed -i 's/false/TRUE/ig' /out/eula.txt && $jcommand 
+   $JCOMMAND && sed -i 's/false/TRUE/ig' /out/eula.txt && $JCOMMAND
 fi
+

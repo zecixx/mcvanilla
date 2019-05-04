@@ -13,6 +13,6 @@ ADD mcstarter.sh /minecraft
 WORKDIR /out
 USER mcuser
 ENTRYPOINT ["tini","--"]
-CMD ["/minecraft/mcstarter.sh"]
+CMD ["/bin/sh","/minecraft/mcstarter.sh"]
 EXPOSE 25565
 

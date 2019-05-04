@@ -8,12 +8,11 @@ VOLUME /out
 RUN apk update && \
         apk add openjdk8 tini
 RUN mkdir /minecraft
-ADD server.jar /minecraft
+ADD server.jar /minecraft 
+ADD mcstarter.sh /minecraft
 WORKDIR /out
 USER mcuser
-ONBUILD RUN java -jar /minecraft/server.jar && \ 
-	sed -i 's/false/TRUE/ig' /out/eula.txt
 ENTRYPOINT ["tini","--"]
-CMD ["java","-jar","/minecraft/server.jar"]
+CMD ["/minecraft/mcstarter.sh"]
 EXPOSE 25565
 
